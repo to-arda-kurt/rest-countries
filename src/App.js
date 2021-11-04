@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { lightMode, darkMode, GlobalStyle } from './styles/Global.Styled';
+import { GlobalStyle } from './styles/Global.Styled';
+import { lightMode, darkMode } from './styles/theme';
 import mainContext from './context/mainContext';
 import Header from './views/Header';
 
