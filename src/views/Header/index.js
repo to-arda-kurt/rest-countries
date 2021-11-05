@@ -20,8 +20,8 @@ const Header = () => {
 export default Header;
 
 const HeaderWrapper = styled.div`
-  background-color: ${(props) => props.theme.background};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0562443);
+  background-color: ${(props) => props.theme.header.color};
+  box-shadow: ${(props) => props.theme.header.boxShadow};
 `;
 
 const HeaderContent = styled.div`

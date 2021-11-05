@@ -3,10 +3,18 @@ export const lightMode = {
   input: 'hsl(0, 0%, 52%)',
   background: 'hsl(0, 0%, 98%)',
   elements: 'hsl(0, 0%, 100%)',
+  header: {
+    color: 'hsl(0, 0%, 100%)',
+    boxShadow: '0px 2px 4px rgba(9, 9, 9, 0.056)',
+  },
 };
 
 export const darkMode = {
   elements: 'hsl(209, 23%, 22%)',
   background: 'hsl(207, 26%, 17%)',
   text: 'hsl(0, 0%, 100%)',
+  header: {
+    color: 'hsla(209, 23%, 22%, 1)',
+    boxShadow: '0px 0px 0px rgba(9, 9, 9, 0.056)',
+  },
 };
