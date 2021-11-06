@@ -3,17 +3,24 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './styles/Global.Styled';
 import { lightMode, darkMode } from './styles/theme';
 import mainContext from './context/mainContext';
-import Header from './views/Header';
+import Home from './views/Home';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function App() {
   const MainContext = useContext(mainContext);
   const { theme, setTheme } = MainContext;
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightMode : darkMode}>
-      <GlobalStyle />
-      <Header />
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme === 'light' ? lightMode : darkMode}>
+        <GlobalStyle />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </ThemeProvider>
+    </Router>
   );
 }
 

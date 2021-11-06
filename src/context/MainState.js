@@ -7,6 +7,7 @@ import { useReducer } from 'react';
 const MainState = (props) => {
   const initialState = {
     theme: 'light',
+    filterOptions: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
   };
 
   const [state, dispatch] = useReducer(mainReducer, initialState);
@@ -20,7 +21,13 @@ const MainState = (props) => {
   };
 
   return (
-    <MainContext.Provider value={{ theme: state.theme, setTheme }}>
+    <MainContext.Provider
+      value={{
+        theme: state.theme,
+        filterOptions: state.filterOptions,
+        setTheme,
+      }}
+    >
       {props.children}
     </MainContext.Provider>
   );

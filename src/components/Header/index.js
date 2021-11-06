@@ -1,6 +1,6 @@
 import React from 'react';
-import Logo from '../../components/Logo';
-import Toggle from '../../components/Toggle';
+import Logo from './Logo';
+import Toggle from './Toggle';
 import styled from 'styled-components';
 import { Container } from '../../styles/Global.Styled';
 
@@ -19,7 +19,7 @@ const Header = () => {
 
 export default Header;
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.header`
   background-color: ${(props) => props.theme.header.color};
   box-shadow: ${(props) => props.theme.header.boxShadow};
 `;

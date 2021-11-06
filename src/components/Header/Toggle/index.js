@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import MainContext from '../../context/mainContext';
+import MainContext from '../../../context/mainContext';
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
