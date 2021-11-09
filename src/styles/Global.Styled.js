@@ -16,6 +16,9 @@ export const GlobalStyle = createGlobalStyle`
     body {
         background-color: ${(props) => props.theme.background};
     }
+    textarea:focus, input:focus{
+    outline: none;
+}
 `;
 
 // Global Stylings

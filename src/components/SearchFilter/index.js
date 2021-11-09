@@ -2,28 +2,31 @@ import React, { useContext, useState, useRef, useEffect } from 'react';
 import MainContext from '../../context/mainContext';
 import styled from 'styled-components';
 
+import { BiSearchAlt2, BiChevronDown } from 'react-icons/bi';
+
 const SearchFilter = () => {
   const mainContext = useContext(MainContext);
   const { filterOptions } = mainContext;
   const [showOptions, setShowOptions] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('');
   const clickOutside = useRef(null);
 
-  const handleClick = (e) => {
-    if (clickOutside.current.contains(e.target)) {
-      // inside click
-      return;
-    }
-    setShowOptions(false);
-  };
+  // const handleClick = (e) => {
+  //   if (clickOutside.current.contains(e.target)) {
+  //     // inside click
+  //     return;
+  //   }
+  //   setShowOptions(false);
+  // };
 
-  useEffect(() => {
-    // add when mounted
-    document.addEventListener('mousedown', handleClick);
-    // return function to be called when unmounted
-    return () => {
-      document.removeEventListener('mousedown', handleClick);
-    };
-  }, []);
+  // useEffect(() => {
+  //   // add when mounted
+  //   document.addEventListener('mousedown', handleClick);
+  //   // return function to be called when unmounted
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClick);
+  //   };
+  // }, []);
 
   const filterHandler = () => {
     setShowOptions((prevState) => {
@@ -31,27 +34,37 @@ const SearchFilter = () => {
     });
   };
 
+  const filterSelectHandler = (event) => {
+    setSelectedOption(event.target.option);
+    console.log(selectedOption);
+  };
   return (
     <>
       <Section>
-        <form action="">
-          <label htmlFor=""></label>
-          <input type="text" />
-        </form>
-        <div ref={clickOutside}>
-          <button onClick={filterHandler}>Filter by Region</button>
+        <Form>
+          <BiSearchAlt2 size={18} />
+          <form action="">
+            <input type="text" placeholder="Search for a country..." />
+          </form>
+        </Form>
+
+        <FilterButton onClick={filterHandler}>
+          Filter by Region
+          <span>
+            <BiChevronDown size={24} />
+          </span>
           {showOptions && (
-            <div>
+            <FilterOptions>
               <ul>
                 {filterOptions.map((option) => (
-                  <li key={option} value={option}>
-                    {option}{' '}
+                  <li onClick={filterSelectHandler} key={option} value={option}>
+                    {option}
                   </li>
                 ))}
               </ul>
-            </div>
+            </FilterOptions>
           )}
-        </div>
+        </FilterButton>
       </Section>
     </>
   );
@@ -59,7 +72,80 @@ const SearchFilter = () => {
 
 export default SearchFilter;
 
+const FilterOptions = styled.div`
+  position: absolute;
+  top: 60px;
+  background-color: ${(props) => props.theme.elements};
+  border-radius: 5px;
+  width: 200px;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(props) => props.theme.text};
+  ul {
+    list-style: none;
+    padding: 16px 24px;
+    li {
+      text-align: left;
+      padding: 4px 0;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+`;
+
+const FilterButton = styled.button`
+  position: relative;
+  width: 200px;
+  height: 56px;
+  background-color: ${(props) => props.theme.elements};
+  color: ${(props) => props.theme.text};
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+`;
+
 const Section = styled.section`
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 48px auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Form = styled.div`
+  width: 450px;
+  height: 56px;
+  background-color: ${(props) => props.theme.elements};
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  form {
+    input {
+      border: 0;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 20px;
+      height: 100%;
+      background: transparent;
+      color: ${(props) => props.theme.input};
+    }
+  }
+
+  svg {
+    margin: 18px 24px 18px 32px;
+
+    path {
+      fill: ${(props) => props.theme.input};
+    }
+  }
 `;
