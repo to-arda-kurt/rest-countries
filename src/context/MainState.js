@@ -11,6 +11,7 @@ const MainState = (props) => {
     filterOptions: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
     region: 'all',
     countries: [],
+    result: [],
   };
 
   const [state, dispatch] = useReducer(mainReducer, initialState);
@@ -42,6 +43,7 @@ const MainState = (props) => {
         theme: state.theme,
         filterOptions: state.filterOptions,
         countries: state.countries,
+        result: state.result,
         setTheme,
         getAllCountries,
       }}

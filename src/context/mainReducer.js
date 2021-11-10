@@ -13,6 +13,7 @@ export default (state, action) => {
       return {
         ...state,
         countries: action.payload,
+        result: action.payload,
       };
     default:
       return state;

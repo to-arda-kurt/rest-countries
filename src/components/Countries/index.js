@@ -7,7 +7,7 @@ import MainContext from '../../context/mainContext';
 const Countries = () => {
   const mainContext = useContext(MainContext);
 
-  const { getAllCountries, countries } = mainContext;
+  const { getAllCountries, countries, result } = mainContext;
 
   useEffect(() => {
     getAllCountries();
@@ -16,8 +16,8 @@ const Countries = () => {
   return (
     <Section>
       <CountryList>
-        {countries.map((country) => (
-          <Country key={country.name} country={country} />
+        {result.map((country) => (
+          <Country key={result.name} country={country} />
         ))}
       </CountryList>
     </Section>
