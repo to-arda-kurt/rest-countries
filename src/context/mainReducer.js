@@ -1,4 +1,4 @@
-import { SET_THEME } from './types';
+import { SET_THEME, SET_ALL_COUNTRIES } from './types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
@@ -7,6 +7,12 @@ export default (state, action) => {
       return {
         ...state,
         theme: action.payload,
+      };
+
+    case SET_ALL_COUNTRIES:
+      return {
+        ...state,
+        countries: action.payload,
       };
     default:
       return state;

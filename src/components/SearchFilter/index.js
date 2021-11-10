@@ -8,25 +8,6 @@ const SearchFilter = () => {
   const mainContext = useContext(MainContext);
   const { filterOptions } = mainContext;
   const [showOptions, setShowOptions] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
-  const clickOutside = useRef(null);
-
-  // const handleClick = (e) => {
-  //   if (clickOutside.current.contains(e.target)) {
-  //     // inside click
-  //     return;
-  //   }
-  //   setShowOptions(false);
-  // };
-
-  // useEffect(() => {
-  //   // add when mounted
-  //   document.addEventListener('mousedown', handleClick);
-  //   // return function to be called when unmounted
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClick);
-  //   };
-  // }, []);
 
   const filterHandler = () => {
     setShowOptions((prevState) => {
@@ -34,10 +15,10 @@ const SearchFilter = () => {
     });
   };
 
-  const filterSelectHandler = (event) => {
-    setSelectedOption(event.target.option);
-    console.log(selectedOption);
+  const filterSelectHandler = (option) => {
+    console.log(option);
   };
+
   return (
     <>
       <Section>
@@ -57,7 +38,11 @@ const SearchFilter = () => {
             <FilterOptions>
               <ul>
                 {filterOptions.map((option) => (
-                  <li onClick={filterSelectHandler} key={option} value={option}>
+                  <li
+                    onClick={() => filterSelectHandler(option)}
+                    key={option}
+                    value={option}
+                  >
                     {option}
                   </li>
                 ))}
@@ -81,15 +66,18 @@ const FilterOptions = styled.div`
   font-size: 14px;
   line-height: 20px;
   color: ${(props) => props.theme.text};
+
   ul {
     list-style: none;
     padding: 16px 24px;
+
     li {
       text-align: left;
       padding: 4px 0;
       font-weight: normal;
       font-size: 14px;
       line-height: 20px;
+      cursor: pointer;
     }
   }
 `;
@@ -109,6 +97,7 @@ const FilterButton = styled.button`
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
+  cursor: pointer;
 `;
 
 const Section = styled.section`
