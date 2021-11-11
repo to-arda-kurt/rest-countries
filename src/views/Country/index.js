@@ -33,12 +33,53 @@ const Country = () => {
       {loading === true ? (
         ''
       ) : (
-        <main>
-          <div>
+        <MainCountryInfo>
+          <Flag>
             <img src={country.flag} alt={`${country.name} Flag`} />
-          </div>
-          <div></div>
-        </main>
+          </Flag>
+          <CountryInfo>
+            <h1>{country.name}</h1>
+            <Infos>
+              <div>
+                <InfoItem>
+                  <Title>Native Name: </Title> {country.nativeName}
+                </InfoItem>
+                <InfoItem>
+                  <Title>Population: </Title> {country.population}
+                </InfoItem>
+                <InfoItem>
+                  <Title>Region: </Title> {country.region}
+                </InfoItem>
+                <InfoItem>
+                  <Title>Sub Region: </Title> {country.subRegion}
+                </InfoItem>
+                <InfoItem>
+                  <Title>Capital: </Title> {country.capital}
+                </InfoItem>
+              </div>
+              <div>
+                <InfoItem>
+                  <Title>Top Level Domain: </Title>
+                  {country.topLevelDomain}
+                </InfoItem>
+                <InfoItem>
+                  <Title>Currencies: </Title> TODO MAP
+                </InfoItem>
+                <InfoItem>
+                  <Title>Languages: </Title>TODO MAP
+                </InfoItem>
+              </div>
+            </Infos>
+            <div>
+              <InfoItem>
+                <Title>Border Countries:</Title>
+              </InfoItem>
+              <button>1</button>
+              <button>2</button>
+              <button>3</button>
+            </div>
+          </CountryInfo>
+        </MainCountryInfo>
       )}
     </Section>
   );
@@ -46,10 +87,53 @@ const Country = () => {
 
 export default Country;
 
-const Section = styled.section`
-  max-width: 1280px;
-  margin: 80px auto;
-  color: ${(props) => props.theme.text};
+const Title = styled.span`
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 32px;
+`;
+
+const InfoItem = styled.p`
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 32px;
+`;
+
+const Infos = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const CountryInfo = styled.div`
+  width: 574px;
+
+  h1 {
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 44px;
+    margin-bottom: 23px;
+    margin-top: 29px;
+  }
+`;
+
+const Flag = styled.div`
+  overflow: hidden;
+  width: 560px;
+  height: 401px;
+
+  img {
+    border-radius: 10px;
+    width: 100%;
+    object-fit: contain;
+  }
+`;
+
+const MainCountryInfo = styled.main`
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
 `;
 
 const Back = styled.button`
@@ -73,4 +157,10 @@ const Back = styled.button`
     margin-left: 22px;
     margin-right: 10px;
   }
+`;
+
+const Section = styled.section`
+  max-width: 1280px;
+  margin: 80px auto;
+  color: ${(props) => props.theme.text};
 `;
