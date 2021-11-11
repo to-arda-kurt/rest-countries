@@ -1,7 +1,12 @@
 import MainContext from './mainContext';
 import mainReducer from './mainReducer';
 
-import { SET_THEME, SET_ALL_COUNTRIES, SET_COUNTRY } from './types';
+import {
+  SET_THEME,
+  SET_ALL_COUNTRIES,
+  SET_COUNTRY,
+  SET_LOADING,
+} from './types';
 import { useReducer } from 'react';
 import axios from 'axios';
 
@@ -14,6 +19,7 @@ const MainState = (props) => {
     countries: [],
     result: [],
     country: [],
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(mainReducer, initialState);
@@ -41,6 +47,7 @@ const MainState = (props) => {
 
   // GET COUNTRY DATA
   const getCountry = async (code) => {
+    setLoading();
     await axios
       .get(`${state.apiUri}/alpha/${code}`)
       .then((res) => {
@@ -50,8 +57,16 @@ const MainState = (props) => {
         });
       })
       .catch((err) => console.log(err));
+    setLoading();
   };
 
+  // Manage Loading
+  const setLoading = (loading) => {
+    dispatch({
+      type: SET_LOADING,
+      payload: loading,
+    });
+  };
   return (
     <MainContext.Provider
       value={{
@@ -60,9 +75,11 @@ const MainState = (props) => {
         countries: state.countries,
         result: state.result,
         country: state.country,
+        loading: state.loading,
         setTheme,
         getAllCountries,
         getCountry,
+        setLoading,
       }}
     >
       {props.children}
