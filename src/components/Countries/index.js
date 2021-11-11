@@ -37,4 +37,7 @@ const CountryList = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 74px;
+  a {
+    text-decoration: none;
+  }
 `;

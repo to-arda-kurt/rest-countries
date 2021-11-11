@@ -1,30 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Country = ({ country }) => {
   return (
     <>
-      <ListItem>
-        <ItemWrapper>
-          <FlagWrapper>
-            <img src={country.flag} alt={`${country.name} Flag`} />
-          </FlagWrapper>
-          <InfoWrapper>
-            <h2>{country.name}</h2>
-            <Details>
-              <p>
-                Population: <span>{country.population}</span>{' '}
-              </p>
-              <p>
-                Region: <span> {country.region}</span>
-              </p>
-              <p>
-                Capital: <span>{country.capital}</span>
-              </p>
-            </Details>
-          </InfoWrapper>
-        </ItemWrapper>
-      </ListItem>
+      <Link to={`/country/${country.alpha3Code}`}>
+        <ListItem>
+          <ItemWrapper>
+            <FlagWrapper>
+              <img src={country.flag} alt={`${country.name} Flag`} />
+            </FlagWrapper>
+            <InfoWrapper>
+              <h2>{country.name}</h2>
+              <Details>
+                <p>
+                  Population: <span>{country.population}</span>{' '}
+                </p>
+                <p>
+                  Region: <span> {country.region}</span>
+                </p>
+                <p>
+                  Capital: <span>{country.capital}</span>
+                </p>
+              </Details>
+            </InfoWrapper>
+          </ItemWrapper>
+        </ListItem>
+      </Link>
     </>
   );
 };
