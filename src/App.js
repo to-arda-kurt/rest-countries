@@ -8,8 +8,8 @@ import Header from './components/Header';
 import SearchFilter from './components/SearchFilter';
 
 import Home from './views/Home';
-import CountryDetail from './views/CountryDetail';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Country from './views/Country';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   const MainContext = useContext(mainContext);
@@ -25,8 +25,8 @@ function App() {
             <SearchFilter />
             <Home />
           </Route>
-          <Route path="/countries/:countrySlug">
-            <CountryDetail />
+          <Route path="/:country">
+            <Country />
           </Route>
         </Switch>
       </ThemeProvider>

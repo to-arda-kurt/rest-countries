@@ -1,17 +1,19 @@
 import MainContext from './mainContext';
 import mainReducer from './mainReducer';
 
-import { SET_THEME, SET_ALL_COUNTRIES } from './types';
+import { SET_THEME, SET_ALL_COUNTRIES, SET_COUNTRY } from './types';
 import { useReducer } from 'react';
 import axios from 'axios';
 
 const MainState = (props) => {
   const initialState = {
     theme: 'light',
+    apiUri: 'https://restcountries.com/v2',
     filterOptions: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
     region: 'all',
     countries: [],
     result: [],
+    country: [],
   };
 
   const [state, dispatch] = useReducer(mainReducer, initialState);
@@ -27,13 +29,26 @@ const MainState = (props) => {
   //GET ALL DATA
   const getAllCountries = async () => {
     await axios
-      .get(`https://restcountries.com/v2/${state.region}`)
+      .get(`${state.apiUri}/${state.region}`)
       .then((res) =>
         dispatch({
           type: SET_ALL_COUNTRIES,
           payload: res.data,
         })
       )
+      .catch((err) => console.log(err));
+  };
+
+  // GET COUNTRY DATA
+  const getCountry = async (code) => {
+    await axios
+      .get(`${state.apiUri}/alpha/${code}`)
+      .then((res) => {
+        dispatch({
+          type: SET_COUNTRY,
+          payload: res.data,
+        });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -44,8 +59,10 @@ const MainState = (props) => {
         filterOptions: state.filterOptions,
         countries: state.countries,
         result: state.result,
+        country: state.country,
         setTheme,
         getAllCountries,
+        getCountry,
       }}
     >
       {props.children}

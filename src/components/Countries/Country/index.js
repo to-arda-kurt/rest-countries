@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 const Country = ({ country }) => {
   return (
     <>
-      <Link to={`/country/${country.alpha3Code}`}>
-        <ListItem>
+      <Link key={country.name} to={`/${country.alpha3Code.toLowerCase()}`}>
+        <ListItem key={country.name}>
           <ItemWrapper>
             <FlagWrapper>
               <img src={country.flag} alt={`${country.name} Flag`} />
