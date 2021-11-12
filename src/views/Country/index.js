@@ -63,10 +63,28 @@ const Country = () => {
                   {country.topLevelDomain}
                 </InfoItem>
                 <InfoItem>
-                  <Title>Currencies: </Title> TODO MAP
+                  <Title>Currencies: </Title>{' '}
+                  {country.currencies &&
+                    country.currencies.map(({ code, name }, index) => {
+                      return (
+                        <span key={code}>
+                          {name}{' '}
+                          {index < country.currencies.length - 1 ? ', ' : ''}
+                        </span>
+                      );
+                    })}
                 </InfoItem>
                 <InfoItem>
-                  <Title>Languages: </Title>TODO MAP
+                  <Title>Languages: </Title>
+                  {country.languages &&
+                    country.languages.map(({ iso639_1, name }, index) => {
+                      return (
+                        <span key={iso639_1}>
+                          {name}
+                          {index < country.languages.length - 1 ? ', ' : ''}
+                        </span>
+                      );
+                    })}
                 </InfoItem>
               </div>
             </Infos>
