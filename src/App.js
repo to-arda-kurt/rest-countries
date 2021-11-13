@@ -25,7 +25,7 @@ function App() {
             <SearchFilter />
             <Home />
           </Route>
-          <Route path="/:country">
+          <Route exact path="/:countryCode">
             <Country />
           </Route>
         </Switch>

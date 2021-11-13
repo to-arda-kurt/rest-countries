@@ -16,7 +16,7 @@ const Countries = () => {
   return (
     <Section>
       <CountryList>
-        {result.slice(0, 12).map((country) => (
+        {result.map((country) => (
           <Country key={country.name} country={country} />
         ))}
       </CountryList>

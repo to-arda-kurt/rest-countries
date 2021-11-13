@@ -6,6 +6,7 @@ import {
   SET_ALL_COUNTRIES,
   SET_COUNTRY,
   SET_LOADING,
+  FIND_COUNTRY,
 } from './types';
 import { useReducer } from 'react';
 import axios from 'axios';
@@ -20,6 +21,7 @@ const MainState = (props) => {
     result: [],
     country: [],
     loading: false,
+    ctrDetail: null,
   };
 
   const [state, dispatch] = useReducer(mainReducer, initialState);
@@ -67,6 +69,7 @@ const MainState = (props) => {
       payload: loading,
     });
   };
+
   return (
     <MainContext.Provider
       value={{
@@ -76,6 +79,7 @@ const MainState = (props) => {
         result: state.result,
         country: state.country,
         loading: state.loading,
+        ctrDetail: state.ctrDetail,
         setTheme,
         getAllCountries,
         getCountry,

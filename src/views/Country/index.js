@@ -1,12 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import MainContext from '../../context/mainContext';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { BiArrowBack } from 'react-icons/bi';
 
 const Country = () => {
   const mainContext = useContext(MainContext);
-  const { getCountry, country, loading, setLoading } = mainContext;
+  const {
+    getCountry,
+    country,
+    loading,
+    setLoading,
+    getAllCountries,
+    countries,
+  } = mainContext;
 
   const history = useHistory();
   const code = history.location.pathname.split('/')[1];
@@ -19,8 +26,16 @@ const Country = () => {
   useEffect(() => {
     setLoading(true);
     getCountry(code);
+    getAllCountries();
     setLoading(false);
   }, []);
+
+  const countryBorders = (border) => {
+    let borderList = [];
+    const borders = country.borders;
+
+    border.map((border) => countries);
+  };
 
   return (
     <Section>
@@ -90,11 +105,8 @@ const Country = () => {
             </Infos>
             <div>
               <InfoItem>
-                <Title>Border Countries:</Title>
+                <Title>Border Countries: </Title>
               </InfoItem>
-              <button>1</button>
-              <button>2</button>
-              <button>3</button>
             </div>
           </CountryInfo>
         </MainCountryInfo>
