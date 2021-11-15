@@ -52,7 +52,7 @@ const ItemWrapper = styled.div`
 const FlagWrapper = styled.div`
   width: 264px;
   height: 160px;
-  overflow: ;
+
   img {
     width: 100%;
     height: 100%;

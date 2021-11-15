@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import MainContext from '../../context/mainContext';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory, Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { BiArrowBack } from 'react-icons/bi';
 
@@ -18,24 +18,30 @@ const Country = () => {
   const history = useHistory();
   const code = history.location.pathname.split('/')[1];
 
-  const goBack = (e) => {
-    e.preventDefault();
-    history.goBack();
-  };
-
   useEffect(() => {
     setLoading(true);
     getCountry(code);
     getAllCountries();
     setLoading(false);
-  }, []);
+  }, [code]);
+
+  const goBack = (e) => {
+    e.preventDefault();
+    history.goBack();
+  };
 
   const countryBorders = (border) => {
-    const fullName = countries.filter(
-      (country) => country.alpha3Code === border
-    );
-
-    return fullName[0].name;
+    try {
+      let fullName = null;
+      fullName = countries.filter((country) => country.alpha3Code === border);
+      return (
+        <Link key={border} to={`/${border.toLowerCase()}`}>
+          {fullName[0].name}
+        </Link>
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -66,9 +72,11 @@ const Country = () => {
                 <InfoItem>
                   <Title>Region: </Title> {country.region}
                 </InfoItem>
-                <InfoItem>
-                  <Title>Sub Region: </Title> {country.subRegion}
-                </InfoItem>
+                {country.subRegion && (
+                  <InfoItem>
+                    <Title>Sub Region: </Title> {country.subRegion}
+                  </InfoItem>
+                )}
                 <InfoItem>
                   <Title>Capital: </Title> {country.capital}
                 </InfoItem>
@@ -108,11 +116,7 @@ const Country = () => {
               <InfoItem>
                 <Title>Border Countries: </Title>
                 {country.borders &&
-                  country.borders.map((border) => {
-                    return (
-                      <button key={border}>{countryBorders(border)}</button>
-                    );
-                  })}
+                  country.borders.map((border) => countryBorders(border))}
               </InfoItem>
             </div>
           </CountryInfo>
@@ -122,7 +126,7 @@ const Country = () => {
   );
 };
 
-export default Country;
+export default withRouter(Country);
 
 const Title = styled.span`
   font-weight: 600;
@@ -157,7 +161,6 @@ const CountryInfo = styled.div`
 const Flag = styled.div`
   overflow: hidden;
   width: 560px;
-  height: 401px;
 
   img {
     border-radius: 10px;
