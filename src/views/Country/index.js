@@ -31,10 +31,11 @@ const Country = () => {
   }, []);
 
   const countryBorders = (border) => {
-    let borderList = [];
-    const borders = country.borders;
+    const fullName = countries.filter(
+      (country) => country.alpha3Code === border
+    );
 
-    border.map((border) => countries);
+    return fullName[0].name;
   };
 
   return (
@@ -106,6 +107,12 @@ const Country = () => {
             <div>
               <InfoItem>
                 <Title>Border Countries: </Title>
+                {country.borders &&
+                  country.borders.map((border) => {
+                    return (
+                      <button key={border}>{countryBorders(border)}</button>
+                    );
+                  })}
               </InfoItem>
             </div>
           </CountryInfo>
