@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import MainContext from '../../context/mainContext';
 import { useHistory, Link, withRouter } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { className } from 'styled-components';
 import { BiArrowBack } from 'react-icons/bi';
 
 const Country = () => {
@@ -35,9 +35,11 @@ const Country = () => {
       let fullName = null;
       fullName = countries.filter((country) => country.alpha3Code === border);
       return (
-        <Link key={border} to={`/${border.toLowerCase()}`}>
-          {fullName[0].name}
-        </Link>
+        <LinkWrapper>
+          <LinkButton key={border} to={`/${border.toLowerCase()}`}>
+            {fullName[0].name}
+          </LinkButton>
+        </LinkWrapper>
       );
     } catch (error) {
       console.log(error);
@@ -72,11 +74,12 @@ const Country = () => {
                 <InfoItem>
                   <Title>Region: </Title> {country.region}
                 </InfoItem>
-                {country.subRegion && (
-                  <InfoItem>
-                    <Title>Sub Region: </Title> {country.subRegion}
-                  </InfoItem>
-                )}
+
+                <InfoItem>
+                  <Title>Sub Region: </Title>{' '}
+                  {country.subRegion ? country.subRegion : 'N/A'}
+                </InfoItem>
+
                 <InfoItem>
                   <Title>Capital: </Title> {country.capital}
                 </InfoItem>
@@ -112,13 +115,14 @@ const Country = () => {
                 </InfoItem>
               </div>
             </Infos>
-            <div>
+            <Borders>
               <InfoItem>
                 <Title>Border Countries: </Title>
+
                 {country.borders &&
                   country.borders.map((border) => countryBorders(border))}
               </InfoItem>
-            </div>
+            </Borders>
           </CountryInfo>
         </MainCountryInfo>
       )}
@@ -128,6 +132,30 @@ const Country = () => {
 
 export default withRouter(Country);
 
+const LinkButton = styled(Link)`
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 19px;
+  color: #111517;
+  padding: 2px 27px;
+  &:active {
+  }
+`;
+
+const LinkWrapper = styled.div`
+  height: 28px;
+  margin-left: 10px;
+  background-color: ${(props) => props.theme.element};
+
+  border-radius: 2px;
+  box-shadow: ${(props) => props.theme.borderShadow};
+`;
+
+const Borders = styled.div`
+  margin-top: 68px;
+`;
 const Title = styled.span`
   font-weight: 600;
   font-size: 16px;
