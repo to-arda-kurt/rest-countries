@@ -6,7 +6,7 @@ import { BiSearchAlt2, BiChevronDown } from 'react-icons/bi';
 
 const SearchFilter = () => {
   const mainContext = useContext(MainContext);
-  const { filterOptions } = mainContext;
+  const { filterOptions, setFilter } = mainContext;
   const [showOptions, setShowOptions] = useState(false);
 
   const filterHandler = () => {
@@ -17,6 +17,7 @@ const SearchFilter = () => {
 
   const filterSelectHandler = (option) => {
     console.log(option);
+    setFilter(option);
   };
 
   return (

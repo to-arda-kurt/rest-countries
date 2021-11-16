@@ -3,6 +3,7 @@ import {
   SET_ALL_COUNTRIES,
   SET_COUNTRY,
   SET_LOADING,
+  SET_FILTER,
 } from './types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -25,6 +26,14 @@ export default (state, action) => {
       return {
         ...state,
         country: action.payload,
+      };
+
+    case SET_FILTER:
+      return {
+        ...state,
+        result: state.countries.filter(
+          (country) => country.region === action.payload
+        ),
       };
 
     case SET_LOADING:

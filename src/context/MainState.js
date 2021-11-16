@@ -7,6 +7,7 @@ import {
   SET_COUNTRY,
   SET_LOADING,
   FIND_COUNTRY,
+  SET_FILTER,
 } from './types';
 import { useReducer } from 'react';
 import axios from 'axios';
@@ -15,7 +16,7 @@ const MainState = (props) => {
   const initialState = {
     theme: 'light',
     apiUri: 'https://restcountries.com/v2',
-    filterOptions: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+    filterOptions: ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'],
     region: 'all',
     countries: [],
     result: [],
@@ -70,6 +71,14 @@ const MainState = (props) => {
     });
   };
 
+  // SET FILTER
+  const setFilter = (region) => {
+    dispatch({
+      type: SET_FILTER,
+      payload: region,
+    });
+  };
+
   return (
     <MainContext.Provider
       value={{
@@ -84,6 +93,7 @@ const MainState = (props) => {
         getAllCountries,
         getCountry,
         setLoading,
+        setFilter,
       }}
     >
       {props.children}

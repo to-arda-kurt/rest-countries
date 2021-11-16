@@ -7,11 +7,13 @@ import MainContext from '../../context/mainContext';
 const Countries = () => {
   const mainContext = useContext(MainContext);
 
-  const { getAllCountries, result } = mainContext;
+  const { getAllCountries, result, loading } = mainContext;
 
   useEffect(() => {
     getAllCountries();
   }, []);
+
+  useEffect(() => {}, [result]);
 
   return (
     <Section>
