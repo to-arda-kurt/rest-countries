@@ -7,7 +7,7 @@ import MainContext from '../../context/mainContext';
 const Countries = () => {
   const mainContext = useContext(MainContext);
 
-  const { getAllCountries, result, loading } = mainContext;
+  const { getAllCountries, result } = mainContext;
 
   useEffect(() => {
     getAllCountries();

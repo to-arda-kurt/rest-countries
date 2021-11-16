@@ -35,11 +35,9 @@ const Country = () => {
       let fullName = null;
       fullName = countries.filter((country) => country.alpha3Code === border);
       return (
-        <LinkWrapper>
-          <LinkButton key={border} to={`/${border.toLowerCase()}`}>
-            {fullName[0].name}
-          </LinkButton>
-        </LinkWrapper>
+        <LinkButton key={border} to={`/${border.toLowerCase()}`}>
+          {fullName[0].name}
+        </LinkButton>
       );
     } catch (error) {
       console.log(error);
@@ -138,19 +136,12 @@ const LinkButton = styled(Link)`
   font-weight: 300;
   font-size: 14px;
   line-height: 19px;
-  color: #111517;
-  padding: 2px 27px;
-  &:active {
-  }
-`;
-
-const LinkWrapper = styled.div`
-  height: 28px;
   margin-left: 10px;
-  background-color: ${(props) => props.theme.element};
-
-  border-radius: 2px;
+  color: ${(props) => props.theme.text};
+  padding: 2px 27px;
+  background: ${(props) => props.theme.elements};
   box-shadow: ${(props) => props.theme.borderShadow};
+  border-radius: 2px;
 `;
 
 const Borders = styled.div`

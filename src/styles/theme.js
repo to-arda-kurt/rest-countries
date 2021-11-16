@@ -19,5 +19,5 @@ export const darkMode = {
     color: 'hsla(209, 23%, 22%, 1)',
     boxShadow: '0px 0px 0px rgba(9, 9, 9, 0.056)',
   },
-  borderShadow: '0px 0px 4px 1px rgba(0, 0, 0, 0.104931);',
+  borderShadow: '',
 };
