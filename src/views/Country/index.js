@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import MainContext from '../../context/mainContext';
 import { useHistory, Link, withRouter } from 'react-router-dom';
-import styled, { className } from 'styled-components';
+import styled from 'styled-components';
 import { BiArrowBack } from 'react-icons/bi';
 
 const Country = () => {
