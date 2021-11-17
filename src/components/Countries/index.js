@@ -32,6 +32,10 @@ export default Countries;
 const Section = styled.section`
   max-width: 1280px;
   margin: 48px auto;
+
+  @media screen and (max-width: 660px) {
+    margin: 32px auto;
+  }
 `;
 
 const CountryList = styled.div`
@@ -40,6 +44,10 @@ const CountryList = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 74px;
+
+  @media screen and (max-width: 1280px) {
+    justify-content: center;
+  }
   a {
     text-decoration: none;
   }

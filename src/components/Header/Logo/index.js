@@ -19,4 +19,9 @@ const LogoText = styled(Link)`
   cursor: pointer;
   color: ${(props) => props.theme.text};
   text-decoration: none;
+
+  @media screen and (max-width: 376px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
 `;

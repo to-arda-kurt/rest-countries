@@ -29,4 +29,8 @@ const HeaderContent = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 80px;
+
+  @media screen and (max-width: 1280px) {
+    margin: 0 16px;
+  }
 `;

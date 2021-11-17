@@ -78,6 +78,9 @@ const FilterOptions = styled.div`
   font-size: 14px;
   line-height: 20px;
   color: ${(props) => props.theme.text};
+  @media screen and (max-width: 660px) {
+    top: 55px;
+  }
 
   ul {
     list-style: none;
@@ -110,6 +113,10 @@ const FilterButton = styled.button`
   font-size: 14px;
   line-height: 20px;
   cursor: pointer;
+
+  @media screen and (max-width: 660px) {
+    height: 48px;
+  }
 `;
 
 const Section = styled.section`
@@ -119,6 +126,18 @@ const Section = styled.section`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 660px) {
+    margin: 0 16px;
+    margin-top: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media screen and (max-width: 1280px) {
+    margin: 0 16px;
+    margin-top: 24px;
+  }
 `;
 
 const Form = styled.div`
@@ -129,6 +148,12 @@ const Form = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media screen and (max-width: 660px) {
+    width: 343px;
+    height: 48px;
+    margin-bottom: 40px;
+  }
 
   form {
     input {
