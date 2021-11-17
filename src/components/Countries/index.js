@@ -11,7 +11,7 @@ const Countries = () => {
 
   useEffect(() => {
     getAllCountries();
-  }, []);
+  }, [getAllCountries]);
 
   useEffect(() => {}, [result]);
 

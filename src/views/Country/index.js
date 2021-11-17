@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import MainContext from '../../context/mainContext';
 import { useHistory, Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
@@ -23,6 +23,7 @@ const Country = () => {
     getCountry(code);
     getAllCountries();
     setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code]);
 
   const goBack = (e) => {

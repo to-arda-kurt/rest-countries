@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import MainContext from '../../context/mainContext';
 import styled from 'styled-components';
 
@@ -18,12 +18,10 @@ const SearchFilter = () => {
   };
 
   const filterSelectHandler = (option) => {
-    console.log(option);
     setFilter(option);
   };
 
   const searchFilter = (value) => {
-    console.log(value);
     setSearch(value);
     searchCountry(value);
   };

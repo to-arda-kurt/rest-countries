@@ -6,9 +6,8 @@ import {
   SET_ALL_COUNTRIES,
   SET_COUNTRY,
   SET_LOADING,
-  FIND_COUNTRY,
   SET_FILTER,
-  SEARCH_COUNTRY
+  SEARCH_COUNTRY,
 } from './types';
 import { useReducer } from 'react';
 import axios from 'axios';

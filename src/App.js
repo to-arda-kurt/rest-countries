@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   const MainContext = useContext(mainContext);
-  const { theme, setTheme } = MainContext;
+  const { theme } = MainContext;
 
   return (
     <Router>
