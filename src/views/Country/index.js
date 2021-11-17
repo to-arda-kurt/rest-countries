@@ -23,6 +23,7 @@ const Country = () => {
     getCountry(code);
     getAllCountries();
     setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code]);
 
   const goBack = (e) => {
