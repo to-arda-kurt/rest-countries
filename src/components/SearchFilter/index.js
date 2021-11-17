@@ -6,8 +6,10 @@ import { BiSearchAlt2, BiChevronDown } from 'react-icons/bi';
 
 const SearchFilter = () => {
   const mainContext = useContext(MainContext);
-  const { filterOptions, setFilter } = mainContext;
+  const { filterOptions, setFilter, searchCountry } = mainContext;
   const [showOptions, setShowOptions] = useState(false);
+
+  const [search, setSearch] = useState('');
 
   const filterHandler = () => {
     setShowOptions((prevState) => {
@@ -20,13 +22,24 @@ const SearchFilter = () => {
     setFilter(option);
   };
 
+  const searchFilter = (value) => {
+    console.log(value);
+    setSearch(value);
+    searchCountry(value);
+  };
+
   return (
     <>
       <Section>
         <Form>
           <BiSearchAlt2 size={18} />
           <form action="">
-            <input type="text" placeholder="Search for a country..." />
+            <input
+              type="text"
+              placeholder="Search for a country..."
+              value={search}
+              onChange={(e) => searchFilter(e.target.value)}
+            />
           </form>
         </Form>
 

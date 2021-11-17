@@ -4,6 +4,7 @@ import {
   SET_COUNTRY,
   SET_LOADING,
   SET_FILTER,
+  SEARCH_COUNTRY,
 } from './types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -42,6 +43,14 @@ export default (state, action) => {
         loading: !state.loading,
       };
 
+    case SEARCH_COUNTRY:
+      return {
+        ...state,
+        result: state.countries.filter((country) => {
+          const regex = new RegExp(`${action.payload}`, 'gi');
+          return country.name.match(regex);
+        }),
+      };
     default:
       return state;
   }

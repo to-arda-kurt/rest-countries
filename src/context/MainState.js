@@ -8,6 +8,7 @@ import {
   SET_LOADING,
   FIND_COUNTRY,
   SET_FILTER,
+  SEARCH_COUNTRY
 } from './types';
 import { useReducer } from 'react';
 import axios from 'axios';
@@ -79,6 +80,14 @@ const MainState = (props) => {
     });
   };
 
+  // Search
+  const searchCountry = (searchText) => {
+    dispatch({
+      type: SEARCH_COUNTRY,
+      payload: searchText,
+    });
+  };
+
   return (
     <MainContext.Provider
       value={{
@@ -94,6 +103,7 @@ const MainState = (props) => {
         getCountry,
         setLoading,
         setFilter,
+        searchCountry,
       }}
     >
       {props.children}
