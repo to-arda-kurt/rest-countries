@@ -115,12 +115,15 @@ const Country = () => {
               </div>
             </Infos>
             <Borders>
-              <InfoItem>
-                <Title>Border Countries: </Title>
-
-                {country.borders &&
-                  country.borders.map((border) => countryBorders(border))}
-              </InfoItem>
+              <InfoItemDiv>
+                <TittleWrapper>
+                  <Title>Border Countries: </Title>
+                </TittleWrapper>
+                <div>
+                  {country.borders &&
+                    country.borders.map((border) => countryBorders(border))}
+                </div>
+              </InfoItemDiv>
             </Borders>
           </CountryInfo>
         </MainCountryInfo>
@@ -131,18 +134,35 @@ const Country = () => {
 
 export default withRouter(Country);
 
+const InfoItemDiv = styled.div`
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 32px;
+  display: flex;
+  flex-direction: row;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const TittleWrapper = styled.div`
+  flex-shrink: 0;
+  margin-right: 10px;
+`;
 const LinkButton = styled(Link)`
   text-decoration: none;
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
   line-height: 19px;
-  margin-left: 10px;
+  margin-right: 10px;
   color: ${(props) => props.theme.text};
   padding: 2px 27px;
   background: ${(props) => props.theme.elements};
   box-shadow: ${(props) => props.theme.borderShadow};
   border-radius: 2px;
+  display: inline-table;
+  clear: none;
 `;
 
 const Borders = styled.div`
@@ -164,10 +184,18 @@ const Infos = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  @media screen and (max-width: 660px) {
+    flex-direction: column;
+  }
 `;
 
 const CountryInfo = styled.div`
   width: 574px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 
   h1 {
     font-weight: 800;
@@ -181,19 +209,30 @@ const CountryInfo = styled.div`
 const Flag = styled.div`
   overflow: hidden;
   width: 560px;
+  height: 100%;
+  flex-shrink: 0;
+
+  @media screen and (max-width: 660px) {
+    width: 320px;
+    height: 100%;
+  }
 
   img {
-    border-radius: 10px;
     width: 100%;
-    object-fit: contain;
+    border-radius: 10px;
+    object-fit: cover;
   }
 `;
 
 const MainCountryInfo = styled.main`
   display: flex;
   flex-direction: row;
-
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Back = styled.button`
@@ -213,6 +252,11 @@ const Back = styled.button`
   padding: 10px;
   cursor: pointer;
   margin-bottom: 80px;
+
+  @media screen and (max-width: 660px) {
+    margin-bottom: 40px;
+  }
+
   span {
     margin-left: 22px;
     margin-right: 10px;
@@ -223,4 +267,8 @@ const Section = styled.section`
   max-width: 1280px;
   margin: 80px auto;
   color: ${(props) => props.theme.text};
+
+  @media screen and (max-width: 660px) {
+    margin: 31px 28px;
+  }
 `;
